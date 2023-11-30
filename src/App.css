@@ -1,0 +1,495 @@
+
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+/* -------NAV BAR ---------------- */
+.navbar {
+  background-color: #005288; /* Aviation blue */
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.nav-logo .logo-img {
+  max-height: 50px; /* Adjust maximum height */
+  width: auto; /* Maintain aspect ratio */
+}
+
+.nav-buttons {
+  display: flex;
+  align-items: center;
+}
+
+.nav-link {
+  text-decoration: none;
+  
+}
+
+.nav-button {
+  background-color: white;
+  color: #005288;
+  border: 1px solid #005288;
+  padding: 8px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.nav-button:hover {
+  background-color: #003d66;
+  color: white;
+}
+
+.nav-user-name {
+  color: white;
+  margin-left: 10px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .nav-logo .logo-img {
+    max-height: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+
+  .navbar {
+      flex-direction: row;
+    align-items: center;
+
+  }
+
+  .nav-logo .logo-img {
+    max-height: 35px;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-logo .logo-img {
+    max-height: 30px;
+  }
+
+  .nav-button {
+    padding: 6px 10px;
+    font-size: 0.8em;
+  }
+}
+
+
+
+/* --------------------------------- */
+.homepage-container {
+  background-image: url('../public/aircraft.jpg'); /* Replace with a high-quality aviation image */
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5); /* Dark overlay for text readability */
+}
+
+.homepage-content {
+  position: relative;
+  text-align: center;
+  color: white;
+  z-index: 2; /* To ensure content is above overlay */
+}
+
+.homepage-logo {
+  max-width: 50%;
+  height: auto;
+}
+
+.homepage-title {
+  font-size: 3em;
+  margin-top: 0;
+  margin-bottom: 0.5em;
+}
+
+.button {
+  background-color: #005288;
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  margin: 5px;
+  border-radius: 5px;
+  text-decoration: none; /* Removes underline from links */
+  display: inline-block; /* Aligns buttons in a line */
+  transition: background-color 0.3s;
+}
+
+.button-signup {
+  background-color: #007bff; /* Different color for signup */
+}
+
+.button:hover {
+  background-color: #003d66;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 1024px) {
+  .homepage-logo {
+    max-width: 80%;
+  }
+}
+
+@media (max-width: 768px) {
+  .homepage-title {
+    font-size: 2em;
+  }
+  .homepage-logo {
+    max-width: 70%;
+  }
+  .button {
+    padding: 10px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .homepage-title {
+    font-size: 1.5em;
+  }
+  .homepage-logo {
+    max-width: 60%;
+  }
+}
+
+
+
+/* --------------LOG IN PAGE ---------- */
+.login-page {
+  background-image: url('../public/motor.jpg'); /* Replace with your aviation background image */
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-size: cover;
+  padding: 20px;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.login-container {
+  background: rgba(255, 255, 255, 0.8);
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 350px;
+}
+
+.login-title {
+  text-align: center;
+  color: #005288; /* Aviation blue */
+  margin-bottom: 20px;
+}
+
+.login-form .form-group {
+  margin-bottom: 15px;
+}
+
+.login-form .form-control {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+}
+
+.login-button {
+  background-color: #005288;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.login-button:hover {
+  background-color: #003d66;
+}
+
+.error-message {
+  color: red;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.signup-prompt, .signup-link {
+  text-align: center;
+  display: block;
+  margin-top: 20px;
+}
+
+.signup-link {
+  color: #005288;
+  text-decoration: none;
+}
+
+.signup-link:hover {
+  text-decoration: underline;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .login-page {
+    padding: 10px;
+  }
+
+  .login-container {
+    padding: 30px;
+  }
+}
+
+@media (max-width: 480px) {
+  .login-title {
+    font-size: 1.5em;
+  }
+
+  .login-form .form-control,
+  .login-button {
+    padding: 8px 10px;
+  }
+
+  .login-container {
+    padding: 20px;
+  }
+}
+
+/* -------SIGN UP PAGE ------------ */
+/* General Page Styles */
+.page-container {
+  background-image: url('../public/wing.jpg');
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-size: cover;
+  background-position-y: bottom;
+  padding: 20px;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.home-back-button {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background-color: #005288;
+  color: white;
+  padding: 10px 15px;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 0.9em;
+  transition: background-color 0.3s;
+}
+
+.home-back-button:hover {
+  background-color: #003d66;
+}
+
+/* Form Container */
+.form-container {
+  background: rgba(255, 255, 255, 0.8);
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 350px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Align items to center */
+}
+
+/* Form Element */
+.signup-form {
+  width: 100%; /* Full width of the form container */
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center align form contents */
+}
+
+/* Form Title */
+.form-title {
+  color: #005288;
+  margin-bottom: 20px;
+}
+
+/* Form Group Styling */
+.form-group {
+  width: 100%; /* Ensuring form-group takes full width */
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Align form group contents */
+}
+
+/* Input Fields */
+.input-field {
+  width: 95%; /* Adjust width as needed */
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  margin: 0;
+}
+
+/* Submit Button */
+.submit-button {
+  background-color: #005288;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 95%; /* Adjust width to match input fields */
+}
+
+.submit-button:hover {
+  background-color: #003d66;
+}
+
+/* Error Message */
+.error-message {
+  color: red;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.login-prompt, .login-link {
+  text-align: center;
+  display: block;
+  margin-top: 20px;
+}
+
+.login-link {
+  color: #005288;
+  text-decoration: none;
+}
+
+.login-link:hover {
+  text-decoration: underline;
+}
+
+/* Media Queries for Responsive Design */
+@media (max-width: 768px) {
+  .form-container {
+    padding: 30px;
+  }
+}
+
+@media (max-width: 480px) {
+  .form-title {
+    font-size: 1.5em;
+  }
+
+  .input-field,
+  .submit-button {
+    padding: 8px 10px;
+  }
+
+  .form-container {
+    padding: 20px;
+  }
+}
+/* ------PROFILE PAGE--------------- */
+
+/* General Styles */
+.main-profile-page {
+  background-image: url('../public/profile-page.jpg'); /* Replace with the path to your image */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh; /* Ensure it covers the whole viewport height */
+  margin-top: -10px;
+}
+
+.profile-container {
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  margin-top: 50px;
+}
+
+.user-info {
+  background-color: #e6f2ff; /* Lighter blue for user info background */
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  border-left: 5px solid #007bff; /* Dark blue border */
+}
+
+.user-info p {
+  margin: 10px 0;
+  line-height: 1.6;
+}
+
+.user-info img {
+  max-width: 100px;
+  border-radius: 50%;
+}
+
+.profile-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.profile-form label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.profile-form input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  transition: border-color 0.3s;
+}
+
+.profile-form input:focus {
+  border-color: #007bff; /* Focus color */
+}
+
+.profile-form button {
+  padding: 12px 20px;
+  background-color: #007bff; /* Primary blue color */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.profile-form button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .profile-container {
+    margin: 20px;
+  }
+
+  .user-info img {
+    max-width: 80px;
+  }
+}
