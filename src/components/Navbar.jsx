@@ -9,12 +9,10 @@ function Navbar() {
     logOut();
   };
 
-  // If not logged in, return null or any other placeholder
   if (!isLoggedIn) {
-    return null; // or return a minimal component or any placeholder you prefer
+    return null;
   }
   
-  // If logged in, return the full navbar
   return (
     <nav className="navbar">
       <div className="nav-logo">
@@ -24,6 +22,11 @@ function Navbar() {
       <div className="nav-buttons">
         <Link to="/" className="nav-link">
           <button className="nav-button">Home</button>
+        </Link>
+
+        {/* New Button to Crew Members Page */}
+        <Link to="/crews" className="nav-link">
+          <button className="nav-button">Crew</button>
         </Link>
 
         {isLoggedIn && (

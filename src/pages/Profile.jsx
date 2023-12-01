@@ -30,21 +30,19 @@ function ProfilePage() {
       }
     })
     .then(response => {
-      // Manually update the user in the AuthContext
+
       setUser({ ...user, name, picture, birthday });
       console.log('Profile updated:', response.data);
     })
     .catch(error => {
       if (error.response) {
-        // The request was made and the server responded with a status code
-        // that falls out of the range of 2xx
+
         console.error('Error updating profile:', error.response.data);
       } else if (error.request) {
-        // The request was made but no response was received
-        // `error.request` is an instance of XMLHttpRequest in the browser
+  
         console.error('Error updating profile: No response received', error.request);
       } else {
-        // Something happened in setting up the request that triggered an Error
+
         console.error('Error updating profile:', error.message);
       }
     });

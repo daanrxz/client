@@ -34,7 +34,7 @@ function SignUpPage(){
 
 return(
     <div className="page-container">
-        <Link to="/" className="home-back-button">Back</Link> {/* Back to Home button */}
+        <Link to="/" className="home-back-button">Back</Link> 
     <div className="form-container">
       <h1 className="form-title">Sign-up Page</h1>
       <form onSubmit={handleSignUpSubmit} className="signup-form">
