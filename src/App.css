@@ -1,14 +1,17 @@
 .App {
   background-image: url('../public/profile-page.jpg');
   background-size: cover;
+  height: 100vh;
+  overflow: auto;
 }
 body, html {
   margin: 0;
   padding: 0;
-  height: 100%;
+  height: 100vh;
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  
 }
-/* -------NAV BAR ----------------asd */
+/* -------NAV BAR ---------------- */
 .navbar {
   background-color: #005288; 
   padding: 10px 20px;
@@ -16,6 +19,7 @@ body, html {
   justify-content: space-between;
   align-items: center;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+
 }
 
 .nav-logo .logo-img {
@@ -37,10 +41,11 @@ body, html {
   background-color: white;
   color: #005288;
   border: 1px solid #005288;
-  padding: 8px 15px;
+  padding: 10px 15px;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s, color 0.3s;
+  margin-left: 16px;
 }
 
 .nav-button:hover {
@@ -410,208 +415,37 @@ body, html {
     padding: 20px;
   }
 }
-/* ------PROFILE PAGE--------------- */
-
-/* General Styles */
-.main-profile-page {
-
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  min-height: 100vh; 
-  margin-top: -10px;
-
-}
-
-.profile-container {
-  max-width: 800px;
-  margin: auto;
-  padding:20px;
-  background-color: white;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
-  margin-top: 100px;
-}
-
-.user-info {
-  background-color: #e6f2ff; 
-  padding: 20px;
-  margin-bottom: 20px;
-  border-radius: 8px;
-  border-left: 5px solid #007bff; 
-}
-
-.user-info p {
-  margin: 10px 0;
-  line-height: 1.6;
-}
-
-.user-info img {
-  max-width: 100px;
-  border-radius: 50%;
-}
-
-.profile-form {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-.profile-form label {
-  font-weight: bold;
-  margin-bottom: 5px;
-}
-
-.profile-form input {
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  transition: border-color 0.3s;
-}
-
-.profile-form input:focus {
-  border-color: #007bff;
-}
-
-.profile-form button {
-  padding: 12px 20px;
-  background-color: #007bff; 
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.profile-form button:hover {
-  background-color: #0056b3; 
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-  .profile-container {
-    margin: 20px;
-  }
-
-  .user-info img {
-    max-width: 80px;
-  }
-}
-
-/* ------- ADD CREW PAGE---------- */
-
-.add-crew-container {
-  background: rgba(255, 255, 255, 0.8);
-  padding: 40px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  max-width: 500px;
-  margin: 50px auto; 
-  text-align: center;
-  border: 1px solid black;
-  
-}
-.status-active {
-  color: green;
-}
-
-.status-retired {
-  color: red;
-}
-
-.status-on-leave {
-  color: rgb(255, 179, 0);
-}
-
-.add-crew-title {
-  color: #005288;
-  margin-bottom: 20px;
-}
-
-.add-crew-form {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-.form-group {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-}
-
-.form-control {
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  width: 100%;
-}
-
-.add-crew-button {
-  background-color: #005288;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-  width: 100%;
-}
-.crew-row {
-  cursor: pointer;
-
-}
-
-.crew-row:hover {
-  background-color: #f2f2f2; 
-}
-.add-crew-button:hover {
-  background-color: #003d66;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-  .add-crew-container {
-    padding: 30px;
-    max-width: 90%;
-  }
-}
-
-@media (max-width: 480px) {
-  .add-crew-container {
-    padding: 20px;
-  }
-
-  .add-crew-button, .form-control {
-    padding: 8px 10px;
-  }
-}
-
-
 
 /* crewListPage.css */
 
+/* Status Classes */
+.status-active { color: green; }
+.status-retired { color: red; }
+.status-on-leave { color: rgb(255, 179, 0); }
+
+/* Crew List Container Styles */
 .crew-list-container {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   max-width: 2000px;
   margin: auto;
   padding: 20px;
-  background-color: #f4f4f8; 
+  background-color: #f4f4f8;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
-  height: 1000px;
 }
-
 
 .crew-list-container h1 {
-  color: #005288; 
+  color: #005288;
   text-align: center;
   margin-bottom: 20px;
+  background-color: rgb(209, 209, 209);
+  padding: 20px 0px;
+  border-radius: 8px;
 }
 
+/* Link Styles */
 .add-crew-link {
   display: inline-block;
-  background-color: #2883a7; 
+  background-color: #2883a7;
   color: white;
   padding: 10px 15px;
   margin-bottom: 20px;
@@ -621,6 +455,7 @@ body, html {
   text-align: center;
 }
 
+/* Table Styles */
 .crew-table {
   width: 100%;
   border-collapse: collapse;
@@ -642,61 +477,10 @@ body, html {
 }
 
 .crew-table tbody tr:hover {
-  
-  color: #005288; 
+  color: #005288;
 }
 
-
-
-/* Responsive design for larger screens */
-@media screen and (min-width: 769px) {
-  .crew-table th, .crew-table td {
-    text-align: center;
-  }
-}
-
-/* Responsive table design for smaller screens */
-@media screen and (max-width: 768px) {
-  .crew-table, .crew-table thead, .crew-table tbody, .crew-table th, .crew-table td, .crew-table tr {
-    display: block;
-  }
-
-  .crew-table thead tr {
-    position: absolute;
-    top: -9999px;
-    left: -9999px;
-  }
-
-  .crew-table tr {
-    margin-bottom: 10px;
-    padding: 8px;
-    background-color: #f4f4f8; 
-  }
-
-  .crew-table td {
-    border: none;
-    position: relative;
-    padding-left: 50%;
-    text-align: right;
-    display: block;
-    text-align: right;
-    padding-bottom: 15px;
-  }
-
-  .crew-table td:before {
-    content: attr(data-label);
-    position: absolute;
-    left: 10px;
-    width: 40%;
-    padding-right: 15px;
-    font-weight: bold;
-    text-align: left;
-  }
-
-  .crew-table td:last-child {
-    border-bottom: 0;
-  }
-}
+/* Search Bar Styles */
 .search-bar {
   display: block;
   width: 100%;
@@ -704,19 +488,18 @@ body, html {
   margin-bottom: 20px;
   border-radius: 4px;
   border: 1px solid #ddd;
-  box-sizing: border-box;
 }
 
-/* Style focus state for better user experience */
 .search-bar:focus {
   outline: none;
   border-color: #005288;
   box-shadow: 0 0 0 2px rgba(0, 82, 136, 0.2);
 }
 
+/* Button Container Styles */
 .button-container {
   display: flex;
-  justify-content: space-between; 
+  justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
 }
@@ -730,75 +513,213 @@ body, html {
   font-weight: bold;
   background-color: #2883a7;
 }
+
+/* Responsive Table Styles */
+@media screen and (max-width: 768px) {
+  .crew-table, .crew-table thead, .crew-table tbody, .crew-table th, .crew-table td, .crew-table tr {
+    display: block;
+  }
+
+  .crew-table th {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+
+  .crew-table tr {
+    margin-bottom: 10px;
+  }
+
+  .crew-table td {
+    border: none;
+    position: relative;
+    padding-left: 50%;
+    text-align: right;
+  }
+
+  .crew-table td:before {
+    position: absolute;
+    top: 12px;
+    left: 15px;
+    width: 45%;
+    padding-right: 10px;
+    white-space: nowrap;
+    text-align: left;
+    font-weight: bold;
+  }
+
+  .crew-table td:before { content: attr(data-label); }
+}
+
+/* Smaller Devices */
+@media screen and (max-width: 480px) {
+  .crew-list-container, .button-container {
+    padding: 10px;
+  }
+
+  .add-crew-link, .back-button {
+    padding: 8px 10px;
+    font-size: 0.8em;
+  }
+
+  .search-bar {
+    padding: 8px 10px;
+    margin-bottom: 15px;
+  }
+
+  .crew-list-container h1 {
+    padding: 15px 0px;
+  }
+}
+
+/* Very Small Devices */
+@media screen and (max-width: 320px) {
+  .crew-list-container {
+    padding: 5px;
+  }
+
+  .crew-list-container h1, .add-crew-link, .back-button, .search-bar {
+    font-size: 0.7em;
+  }
+}
+
 /* ----------CREW DETAILS PAGE--------- */
 
-.crew-details-container {
-  font-family: 'Arial', sans-serif;
-  max-width: 600px;
-  margin: 20px auto;
+/* Main container styles */
+.crew-details-main {
+  max-width: 800px;
+  margin: 80px auto 80px auto;
+  background: white;
   padding: 20px;
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
-.crew-details-container h1 {
-  color: #333;
-  text-align: center;
-  margin-bottom: 30px;
-}
-
-.crew-detail p {
-  margin: 10px 0 5px;
-  font-size: 16px;
-  color: #333;
-}
-
-.crew-detail input[type="text"],
-.crew-detail input[type="date"],
-.crew-detail select {
-  width: 100%;
-  padding: 10px;
+.crew-header {
   margin-bottom: 20px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
 }
 
-.crew-detail select {
+.crew-header-title {
+  font-size: 2em;
+  color: #007bff;
+}
+
+.crew-header-button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: white;
   cursor: pointer;
 }
 
-.edit-delete-buttons {
-  text-align: center;
+.crew-header-button:hover {
+  background-color: #0056b3;
+}
+
+/* Form styles for edit mode */
+.crew-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.crew-form-label {
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.crew-form-input,
+.crew-form-select {
+  margin-bottom: 20px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+}
+
+.crew-form-checkbox-group {
+  margin-bottom: 20px;
+}
+
+/* Action button styles */
+.crew-action-buttons {
   margin-top: 20px;
 }
 
-button {
-  padding: 10px 15px;
-  margin: 0 10px;
+.crew-update-button,
+.crew-delete-button {
+  padding: 10px 20px;
   border: none;
-  border-radius: 4px;
-  background-color: #005288;
-  color: white;
-  font-size: 16px;
+  border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.2s;
 }
 
-button:hover {
-  background-color: #003f6b; 
+.crew-update-button {
+  background-color: #28a745;
+  color: white;
 }
 
-/* Responsive styles */
+.crew-delete-button {
+  background-color: #dc3545;
+  color: white;
+  margin-left: 10px;
+}
+
+.crew-update-button:hover {
+  background-color: #218838;
+}
+
+.crew-delete-button:hover {
+  background-color: #c82333;
+}
+
+/* Display styles for non-edit mode */
+.crew-display {
+  border-top: 1px solid #ddd;
+  padding-top: 20px;
+  
+  
+}
+
+.crew-display-item {
+  margin-bottom: 10px;
+}
+
+.crew-profile-picture {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.crew-profile-picture img {
+  width: 100%;
+  height: auto;
+}
+
+/* Responsive design */
 @media (max-width: 768px) {
-  .crew-details-container {
-    margin: 20px;
-    padding: 15px;
+  .crew-details-main {
+    padding: 10px;
   }
 
-  .edit-delete-buttons button {
+  .crew-header-title {
+    font-size: 1.5em;
+  }
+
+  .flex {
+    flex-direction: column;
+  }
+
+  .crew-header-button {
     width: 100%;
-    margin: 10px 0;
+    margin-top: 10px;
+  }
+
+  .crew-action-buttons button {
+    width: 100%;
+    margin-top: 10px;
   }
 }

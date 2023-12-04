@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
 
-
 const API_URL = "http://localhost:5005";
 
 const CrewDetailsPage = () => {
@@ -11,11 +10,13 @@ const CrewDetailsPage = () => {
     birthday: '',
     email: '',
     phone: '',
-    typerating: '',
+    typerating: [],
     license: '',
     role: '',
-    status: ''
+    status: '',
+    profilePicture: ''
   });
+  const [isEditMode, setIsEditMode] = useState(false);
   const [error, setError] = useState('');
   const { crewId } = useParams();
   const navigate = useNavigate();
@@ -27,6 +28,7 @@ const CrewDetailsPage = () => {
           ...response.data,
           birthday: response.data.birthday ? response.data.birthday.split('T')[0] : '',
           license: response.data.license ? response.data.license.split('T')[0] : '',
+          typerating: response.data.typerating ? response.data.typerating.split(',') : []
         };
         setCrewMember(formattedData);
       })
@@ -35,8 +37,17 @@ const CrewDetailsPage = () => {
       });
   }, [crewId]);
 
+  const toggleEditMode = () => {
+    setIsEditMode(!isEditMode);
+  };
+
   const handleUpdate = () => {
-    axios.put(`${API_URL}/api/crews/${crewId}`, crewMember)
+    const updatedCrewMember = {
+      ...crewMember,
+      typerating: crewMember.typerating.join(',')
+    };
+
+    axios.put(`${API_URL}/api/crews/${crewId}`, updatedCrewMember)
       .then(() => {
         alert("Crew member updated successfully!");
         navigate('/crews');
@@ -60,13 +71,21 @@ const CrewDetailsPage = () => {
     }
   };
 
-  const handlePhotoUpload = (e) => {
-    const file = e.target.files[0];
-
-  };
-
   const handleChange = (e) => {
-    setCrewMember({ ...crewMember, [e.target.name]: e.target.value });
+    if (e.target.name === 'typerating') {
+      const newRatings = [...crewMember.typerating];
+      if (e.target.checked) {
+        newRatings.push(e.target.value);
+      } else {
+        const index = newRatings.indexOf(e.target.value);
+        if (index > -1) {
+          newRatings.splice(index, 1);
+        }
+      }
+      setCrewMember({ ...crewMember, typerating: newRatings });
+    } else {
+      setCrewMember({ ...crewMember, [e.target.name]: e.target.value });
+    }
   };
 
   if (error) {
@@ -78,57 +97,92 @@ const CrewDetailsPage = () => {
   }
 
   return (
-    <div className="crew-details-container">
-      <h1>Crew Member Details</h1>
-      <div className="crew-detail">
-      <img src={crewMember.profilePhoto || 'defaultImagePath.jpg'} alt="Profile" />
+    
+    <div className="crew-details-main">
+      <div className="crew-header">
+        <h1 className="crew-header-title">{crewMember.name}'s Details</h1>
+        <button className="crew-header-button" onClick={toggleEditMode}>
+          {isEditMode ? 'Cancel Editing' : 'Edit Profile'}
+        </button>
+      </div>
 
-      <input 
-        type="file" 
-        name="profilePhoto" 
-        onChange={handlePhotoUpload} 
-      />
+      <div className="crew-content">
+        {isEditMode ? (
+          <div className="crew-form">
+            <label className="crew-form-label">Profile Picture URL:</label>
+            <input
+              className="crew-form-input"
+              type="text"
+              name="profilePicture"
+              value={crewMember.profilePicture}
+              onChange={handleChange}
+            />
+            <label className="crew-form-label">Full Name:</label>
+            <input className="crew-form-input" type="text" name="name" value={crewMember.name} onChange={handleChange} />
 
-        <p>Full Name:</p>
-        <input type="text" name="name" value={crewMember.name} onChange={handleChange} />
-        <p>Birthday:</p>
-        <input type="date" name="birthday" value={crewMember.birthday} onChange={handleChange} />
-        <p>Email:</p>
-        <input type="text" name="email" value={crewMember.email} onChange={handleChange} />
-        <p>Phone Number:</p>
-        <input type="text" name="phone" value={crewMember.phone} onChange={handleChange} />
-        <p>Type Rating:</p>
-        <select name="typerating" value={crewMember.typerating} onChange={handleChange}>
-          <option value="">Select Type Rating</option>
-          <option value="A319/320/321">A319/320/321</option>
-          <option value="A330">A330</option>
-          <option value="A350">A350</option>
-        </select>
+            <label className="crew-form-label">Birthday:</label>
+            <input className="crew-form-input" type="date" name="birthday" value={crewMember.birthday} onChange={handleChange} />
 
-        <p>License Expiry Date:</p>
-        <input type="date" name="license" value={crewMember.license} onChange={handleChange} />
+            <label className="crew-form-label">Email:</label>
+            <input className="crew-form-input" type="text" name="email" value={crewMember.email} onChange={handleChange} />
 
-        <p>Role:</p>
-        <select name="role" value={crewMember.role} onChange={handleChange}>
-          <option value="">Select Role</option>
-          <option value="Pilot">Pilot</option>
-          <option value="Co-Pilot">Co-Pilot</option>
-          <option value="Flight Attendant">Flight Attendant</option>
-          <option value="Engineer">Engineer</option>
-        </select>
+            <label className="crew-form-label">Phone Number:</label>
+            <input className="crew-form-input" type="text" name="phone" value={crewMember.phone} onChange={handleChange} />
 
-        <p>Status:</p>
-        <select name="status" value={crewMember.status} onChange={handleChange}>
-          <option value="">Select Status</option>
-          <option value="Active">Active</option>
-          <option value="On Leave">On Leave</option>
-          <option value="Retired">Retired</option>
-        </select>
+            <label className="crew-form-label">Type Rating:</label>
+            <div className="crew-form-checkbox-group">
+              {['A319/320/321', 'A330', 'A350'].map((rating) => (
+                <div key={rating}>
+                  <input
+                    type="checkbox"
+                    name="typerating"
+                    value={rating}
+                    checked={crewMember.typerating.includes(rating)}
+                    onChange={handleChange}
+                  />
+                  <label>{rating}</label>
+                </div>
+              ))}
+            </div>
 
-        <div className='edit-delete-buttons'>
-            <button onClick={handleUpdate}>Update Crew Member</button>
-            <button onClick={handleDelete}>Delete Crew Member</button>
-        </div>
+            <label className="crew-form-label">License Expiry Date:</label>
+            <input className="crew-form-input" type="date" name="license" value={crewMember.license} onChange={handleChange} />
+
+            <label className="crew-form-label">Role:</label>
+            <select className="crew-form-select" name="role" value={crewMember.role} onChange={handleChange}>
+              <option value="Pilot">Pilot</option>
+              <option value="Co-Pilot">Co-Pilot</option>
+              <option value="Flight Attendant">Flight Attendant</option>
+              <option value="Engineer">Engineer</option>
+            </select>
+
+            <label className="crew-form-label">Status:</label>
+            <select className="crew-form-select" name="status" value={crewMember.status} onChange={handleChange}>
+              <option value="Active">Active</option>
+              <option value="On Leave">On Leave</option>
+              <option value="Retired">Retired</option>
+            </select>
+
+            <div className='crew-action-buttons'>
+              <button className="crew-update-button" onClick={handleUpdate}>Update Crew Member</button>
+              <button className="crew-delete-button" onClick={handleDelete}>Delete Crew Member</button>
+            </div>
+          </div>
+        ) : (
+          <div className="crew-display">
+            <div className="crew-profile-picture">
+                <img src={crewMember.profilePicture} alt={`${crewMember.name}'s Profile Image`} />
+              </div>
+            <p className="crew-display-item"><b>Full Name:</b> {crewMember.name}</p>
+            <p className="crew-display-item"><b>Birthday:</b> {crewMember.birthday}</p>
+            <p className="crew-display-item"><b>Email:</b> {crewMember.email}</p>
+            <p className="crew-display-item"><b>Phone Number:</b> {crewMember.phone}</p>
+            <p className="crew-display-item"><b>Type Rating:</b> {crewMember.typerating.join(', ')}</p>
+            <p className="crew-display-item"><b>License Expiry Date:</b> {crewMember.license}</p>
+            <p className="crew-display-item"><b>Role:</b> {crewMember.role}</p>
+            <p className="crew-display-item"><b>Status:</b> {crewMember.status}</p>
+          </div>
+        )}
       </div>
     </div>
   );

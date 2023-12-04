@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { AuthContext } from '../Context/auth.context';
 import axios from 'axios';
-
+import "../pages/Profile.css";
 
 const API_URL = "http://localhost:5005";
 
@@ -50,32 +50,39 @@ function ProfilePage() {
   };
 
   return (
-    <div className='main-profile-page'>
-    <div className="profile-container">
-    <h1>Profile Page</h1>
-    <div className="user-info">
-      <p><strong>Email:</strong> {user?.email}</p>
-      <p><strong>Name:</strong> {user?.name}</p>
-      <p><strong>Birthday:</strong> {user?.birthday}</p>
-      <p><strong>Picture:</strong> {user?.picture ? <img src={user.picture} alt="User" /> : 'No picture'}</p>
+    <div className='profile-main'>
+    <div className="profile-content">
+      <div className="profile-header">
+        <h1 className="profile-title">Profile Page</h1>
+      </div>
+        <div className="profile-info">
+            <p className="profile-info-item"><strong>Email:</strong> {user?.email}</p>
+            <p className="profile-info-item"><strong>Name:</strong> {user?.name}</p>
+            <p className="profile-info-item"><strong>Birthday:</strong> {user?.birthday}</p>
+            <p className="profile-info-item">{user?.picture ? <img src={user.picture} alt="User" width="50px" className="profile-picture" /> : 'No picture'}</p>
+        </div>
+
+        <form onSubmit={handleFormSubmit} className="profile-form">
+            <div className="form-group">
+                <label htmlFor="name" className="form-label">Name:</label>
+                <input id="name" type="text" value={name} onChange={e => setName(e.target.value)} className="form-input" />
+            </div>
+
+            <div className="form-group">
+                <label htmlFor="birthday" className="form-label">Birthday:</label>
+                <input id="birthday" type="date" value={birthday} onChange={e => setBirthday(e.target.value)} className="form-input" />
+            </div>
+
+            <div className="form-group">
+                <label htmlFor="picture" className="form-label">Picture URL:</label>
+                <input id="picture" type="text" value={picture} onChange={e => setPicture(e.target.value)} className="form-input" />
+            </div>
+
+            <button type="submit" className="form-button">Save Changes</button>
+        </form>
     </div>
+</div>
 
-    <form onSubmit={handleFormSubmit} className="profile-form">
-      <label htmlFor="name">Name:</label>
-      <input id="name" type="text" value={name} onChange={e => setName(e.target.value)} />
-
-      <label htmlFor="birthday">Birthday:</label>
-      <input id="birthday" type="date" value={birthday} onChange={e => setBirthday(e.target.value)} />
-
-
-      <label htmlFor="picture">Picture URL:</label>
-      <input id="picture" type="text" value={picture} onChange={e => setPicture(e.target.value)} />
-
-      
-      <button type="submit">Save Changes</button>
-    </form>
-  </div>
-  </div>
 );
 }
 

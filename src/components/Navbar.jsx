@@ -28,6 +28,9 @@ function Navbar() {
         <Link to="/crews" className="nav-link">
           <button className="nav-button">Crew</button>
         </Link>
+        <Link to="/flights" className="nav-link">
+          <button className="nav-button">Flights</button>
+        </Link>
 
         {isLoggedIn && (
           <>

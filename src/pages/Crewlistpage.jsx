@@ -65,6 +65,7 @@ const CrewListPage = () => {
       <table className="crew-table">
         <thead>
           <tr>
+            <th>Photo</th>
             <th>Name</th>
             <th>Role</th>
             <th>Birthday</th>
@@ -76,6 +77,7 @@ const CrewListPage = () => {
         <tbody>
           {filteredCrewMembers.map(crew => (
             <tr key={crew._id} className="crew-row" onClick={() => navigate(`/crews/${crew._id}`)}>
+              <td><img src={crew.profilePicture} alt={`${crew.name}'s Profile Image`} width={"50px"}/></td>
               <td>{crew.name}</td>
               <td>{crew.role}</td>
               <td>{formatDate(crew.birthday)}</td>

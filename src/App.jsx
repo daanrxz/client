@@ -22,6 +22,9 @@ function App() {
         <Route path="/crews" element={<CrewListPage />} />
         <Route path="/add-crew" element={<AddCrewPage />} />
         <Route path="/crews/:crewId" element={<CrewDetailsPage/>}/>
+        <Route path="/add-flight" element={<AddFlightPage />}/>
+        <Route path="/flights/:flightId" element={<FlightDetailsPage />}/>
+        <Route path="/flights" element={<FlightListPage />}/>
       </Routes>
     </div>
   );
