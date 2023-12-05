@@ -9,8 +9,8 @@ const FlightDetailsPage = () => {
         arrivalAirport: '',
         departureTime: '',
         arrivalTime: '',
-        aircraft: '',
-        crew: '',
+        /* aircraft: '', */
+        crew: [],
         airline: '',
         status: '',
         price: '',
@@ -24,7 +24,7 @@ const FlightDetailsPage = () => {
             .then(response => {
             const formattedData = {
                 ...response.data,
-                /* talvez precise mudar DepartureTime, ArrivalTime, duration  */
+                
             };
             // Setting the formatted data to the state variable 'flight'
             setFlight(formattedData);
@@ -94,6 +94,14 @@ const FlightDetailsPage = () => {
                 <option value="Cancelled">Cancelled</option>
                 <option value="Completed">Completed</option>
                 </select>
+                <p>Crew</p>
+                    {flight.crew.map(crewMember => (
+                        <div key={crewMember._id}>
+                            <p>Name: {crewMember.name}</p>
+                            <p>Role: {crewMember.role}</p>
+                            {/* Include other details you wish to display */}
+                        </div>
+                    ))}
                 <p>Price</p>
                 <input type='text' name='price' value={flight.price} onChange={handleChange} placeholder="Price"/>
                 <p>Duration</p>
