@@ -52,7 +52,6 @@ const CrewListPage = () => {
     <div className="crew-list-container">
        <h1>Crew Members</h1>
        <div className="button-container">
-        <Link to="/" className="back-button">Back</Link>
         <Link to="/add-crew" className="add-crew-link">Add New</Link>
       </div>
       <input 

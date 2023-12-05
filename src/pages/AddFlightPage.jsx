@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import "../pages/AddFlightPage.css"
+
 
 const API_URL = "http://localhost:5005";
 
@@ -226,7 +228,7 @@ const AddFlightPage = () => {
                     </div>
 
                     <div className='form-group'>
-                        <button type="submit" className="add-flight-button">Add Flight</button>
+                        <button type="submit" className="button is-white">Add Flight</button>
                     </div>
                 </form>
             </div>

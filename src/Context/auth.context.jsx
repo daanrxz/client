@@ -16,17 +16,16 @@ function AuthProviderWrapper(props){
     }
 
     /* Authenticate the User via JWT */
-    const authenticateUser = () =>{
-        // Get the stored token from the local storage
+    const authenticateUser = () => {
         const storedToken = localStorage.getItem('authToken');
-
-        if(storedToken){
+        if (storedToken) {
             axios.get(`${API_URL}/auth/verify`, {headers: {Authorization: `Bearer ${storedToken}`}})
-            .then((response)=>{
+            .then((response) => {
+                // Assuming the response contains the full user information
                 const user = response.data; 
                 setIsLoggedIn(true);
                 setIsLoading(false);
-                setUser(user);
+                setUser(user); // Set the user information including the image URL
             })
             .catch(()=>{
                 setIsLoggedIn(false);

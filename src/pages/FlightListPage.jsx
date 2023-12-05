@@ -52,8 +52,7 @@ const FlightListPage = () => {
         <div className='flight-list-container'>
         <h1>Flight List</h1>
         <div className='button-container'>
-            <Link to="/" className='back-button'>Back to Home Page</Link>
-            <Link to="/add-flight" className='add-flight-link'>Add new flight</Link>
+            <Link to="/add-flight" className='add-crew-link'>Add Flight</Link>
         </div>
         <input
             type='text'
@@ -70,11 +69,8 @@ const FlightListPage = () => {
                     <th>Arrival Airport</th>
                     <th>Departure Time</th>
                     <th>Arrival Time</th>
-                   {/*  <th>Aircraft</th>
-                    <th>Crew</th> */}
-                    <th>Airline</th>
+                    <th>Aircraft</th>
                     <th>Status</th>
-                 {/*    <th>Price</th> */}
                     <th>Duration</th>
                 </tr>
             </thead>
@@ -86,9 +82,7 @@ const FlightListPage = () => {
                         <td>{flight.arrivalAirport}</td>
                         <td>{formatDate(flight.departureTime)}</td>
                         <td>{formatDate(flight.arrivalTime)}</td>
-                      {/*   <td>{flight.aircraft}</td>
-                        <td>{flight.crew}</td> */}
-                        <td>{flight.airline}</td>
+                        <td>{flight.aircraft}</td>
                         <td className={getStatusClassName(flight.status)}>{flight.status}</td>
                         <td>{flight.duration}</td>
                     </tr>

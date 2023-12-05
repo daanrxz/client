@@ -11,7 +11,6 @@ import { AuthContext } from "../Context/auth.context";
             <div className="overlay"></div>
             <div className="homepage-content">
               <img src="logo-white.png" alt="Logo" className="homepage-logo" />
-              <h1 className="homepage-title">Welcome to Our App</h1>
               <div className="homepage-buttons">
                 {!isLoggedIn ? (
                   <>

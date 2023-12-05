@@ -1,5 +1,5 @@
 .App {
-  background-image: url('../public/profile-page.jpg');
+ 
   background-size: cover;
   height: 100vh;
   overflow: auto;
@@ -11,84 +11,6 @@ body, html {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   
 }
-/* -------NAV BAR ---------------- */
-.navbar {
-  background-color: #005288; 
-  padding: 10px 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-
-}
-
-.nav-logo .logo-img {
-  max-height: 50px; 
-  width: auto; 
-}
-
-.nav-buttons {
-  display: flex;
-  align-items: center;
-}
-
-.nav-link {
-  text-decoration: none;
-  
-}
-
-.nav-button {
-  background-color: white;
-  color: #005288;
-  border: 1px solid #005288;
-  padding: 10px 15px;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s, color 0.3s;
-  margin-left: 16px;
-}
-
-.nav-button:hover {
-  background-color: #003d66;
-  color: white;
-}
-
-.nav-user-name {
-  color: white;
-  margin-left: 10px;
-}
-
-/* Responsive adjustments */
-@media (max-width: 1024px) {
-  .nav-logo .logo-img {
-    max-height: 40px;
-  }
-}
-
-@media (max-width: 768px) {
-
-  .navbar {
-      flex-direction: row;
-    align-items: center;
-
-  }
-
-  .nav-logo .logo-img {
-    max-height: 35px;
-  }
-}
-
-@media (max-width: 480px) {
-  .nav-logo .logo-img {
-    max-height: 30px;
-  }
-
-  .nav-button {
-    padding: 6px 10px;
-    font-size: 0.8em;
-  }
-}
-
 
 
 /* --------------------------------- */
@@ -431,13 +353,14 @@ body, html {
   background-color: #f4f4f8;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
 }
 
 .crew-list-container h1 {
   color: #005288;
-  text-align: center;
   margin-bottom: 20px;
-  background-color: rgb(209, 209, 209);
   padding: 20px 0px;
   border-radius: 8px;
 }
@@ -445,7 +368,7 @@ body, html {
 /* Link Styles */
 .add-crew-link {
   display: inline-block;
-  background-color: #2883a7;
+  background-color: #005288;
   color: white;
   padding: 10px 15px;
   margin-bottom: 20px;
@@ -469,8 +392,12 @@ body, html {
   text-align: left;
   background-color: #ffffff;
   border-bottom: 1px solid #ddd;
+  cursor: pointer;
 }
 
+.crew-table td {
+  height: 80px;
+}
 .crew-table th {
   background-color: #005288;
   color: white;
@@ -497,21 +424,19 @@ body, html {
 }
 
 /* Button Container Styles */
-.button-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-}
 
-.add-crew-link,
-.back-button {
-  padding: 10px 15px;
+
+.add-crew-link {
+
   border-radius: 4px;
   text-decoration: none;
   color: white;
   font-weight: bold;
-  background-color: #2883a7;
+  background-color: #005288;
+}
+
+.add-crew-link:hover {
+  background-color: grey;
 }
 
 /* Responsive Table Styles */
@@ -592,37 +517,42 @@ body, html {
   background: white;
   padding: 20px;
   border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  box-shadow: 0px 0px 30px 0px #5a5a5a82;
 }
 
 .crew-header {
   margin-bottom: 20px;
   display: flex;
   justify-content: space-between;
+  
 }
 
 .crew-header-title {
   font-size: 2em;
-  color: #007bff;
+  color: #005188;
 }
 
 .crew-header-button {
-  padding: 10px 20px;
+  
   border: none;
   border-radius: 5px;
-  background-color: #007bff;
+  background-color: #005188;
   color: white;
   cursor: pointer;
+
+
 }
 
 .crew-header-button:hover {
-  background-color: #0056b3;
+  background-color: #EFEFEF;
+  color: black;
 }
 
 /* Form styles for edit mode */
 .crew-form {
   display: flex;
   flex-direction: column;
+  
 }
 
 .crew-form-label {
@@ -678,7 +608,7 @@ body, html {
 .crew-display {
   border-top: 1px solid #ddd;
   padding-top: 20px;
-  
+
   
 }
 
@@ -687,9 +617,9 @@ body, html {
 }
 
 .crew-profile-picture {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
+  width: 200px;
+  height: auto;
+  border-radius: 10%;
   overflow: hidden;
   margin-bottom: 20px;
 }
@@ -734,13 +664,14 @@ body, html {
   background-color: #f4f4f8;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
+  height: 100vh;
 }
 
 .flight-list-container h1 {
   color: #005288;
-  text-align: center;
+
   margin-bottom: 20px;
-  background-color: rgb(209, 209, 209);
+
   padding: 20px 0px;
   border-radius: 8px;
 }
@@ -752,7 +683,9 @@ body, html {
   border-radius: 8px;
   overflow: hidden;
 }
-
+.flight-table td {
+  height: 80px;
+}
 .flight-table th,
 .flight-table td {
   padding: 12px 15px;
@@ -771,15 +704,19 @@ body, html {
 }
 
 /* Add-Flight Link Styles */
-.add-flight-link {
 
-  display: inline-block;
-  background-color: #2883a7;
-  color: white;
-  padding: 10px 15px;
-  margin-bottom: 20px;
-  text-decoration: none;
-  border-radius: 4px;
-  font-weight: bold;
-  text-align: center;
+.status-scheduled {
+  color: rgb(0, 140, 255);
+}
+
+.status-delayed {
+  color: orange; 
+}
+
+.status-cancelled {
+  color: red; 
+}
+
+.status-completed {
+  color: green;
 }

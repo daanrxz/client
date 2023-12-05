@@ -11,7 +11,7 @@ import CrewDetailsPage from "./pages/CrewDetailsPage";
 import AddFlightPage from "./pages/AddFlightPage";
 import FlightDetailsPage from "./pages/FlightDetailspage"
 import FlightListPage from "./pages/FlightListPage"
-
+import Footer from "./components/footer";
 
 
 function App() {
@@ -31,6 +31,7 @@ function App() {
         <Route path="/flights/:flightId" element={<FlightDetailsPage />}/>
         <Route path="/flights" element={<FlightListPage />}/>
       </Routes>
+      <Footer/>
     </div>
   );
 }
