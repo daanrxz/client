@@ -8,6 +8,11 @@ import ProfilePage from "./pages/Profile";
 import CrewListPage from './pages/Crewlistpage';
 import AddCrewPage from './pages/Addcrewpage';
 import CrewDetailsPage from "./pages/CrewDetailsPage";
+import AddFlightPage from "./pages/AddFlightPage";
+import FlightDetailsPage from "./pages/FlightDetailspage"
+import FlightListPage from "./pages/FlightListPage"
+
+
 
 function App() {
   return (

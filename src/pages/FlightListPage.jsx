@@ -50,53 +50,53 @@ const FlightListPage = () => {
 
     return (
         <div className='flight-list-container'>
-            <h1>Flight List</h1>
-            <div className='button-container'>
-                <Link to="/" className='back-button'>Back to Home Page</Link>
-                <Link to="/add-flight" className='add-flight-link'>Add new flight</Link>
-            </div>
-            <input
-                type='text'
-                placeholder='Search Flights...'
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className='search-bar'
-            />
-            <table className='flight-table'>
-                <thead>
-                    <tr>
-                        <th>Flight Number</th>
-                        <th>Departure Airport</th>
-                        <th>Arrival Airport</th>
-                        <th>Departure Time</th>
-                        <th>Arrival Time</th>
-                        <th>Aircraft</th>
-                        <th>Crew</th>
-                        <th>Airline</th>
-                        <th>Status</th>
-                        <th>Price</th>
-                        <th>Duration</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {filteredFlights.map(flight => (
-                        <tr key={flight._id} className='flight-row' onClick={() => navigate(`/flights/${flight._id}`)}>
-                            <td>{flight.flightNumber}</td>
-                            <td>{flight.departureAirport}</td>
-                            <td>{flight.arrivalAirport}</td>
-                            <td>{formatDate(flight.departureTime)}</td>
-                            <td>{formatDate(flight.arrivalTime)}</td>
-                            <td>{flight.aircraft}</td>
-                            <td>{flight.crew}</td>
-                            <td>{flight.airline}</td>
-                            <td className={getStatusClassName(flight.status)}>{flight.status}</td>
-                            <td>{flight.price}</td>
-                            <td>{flight.duration}</td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
+        <h1>Flight List</h1>
+        <div className='button-container'>
+            <Link to="/" className='back-button'>Back to Home Page</Link>
+            <Link to="/add-flight" className='add-flight-link'>Add new flight</Link>
         </div>
+        <input
+            type='text'
+            placeholder='Search Flights...'
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className='search-bar'
+        />
+        <table className='flight-table'>
+            <thead>
+                <tr>
+                    <th>Flight Number</th>
+                    <th>Departure Airport</th>
+                    <th>Arrival Airport</th>
+                    <th>Departure Time</th>
+                    <th>Arrival Time</th>
+                   {/*  <th>Aircraft</th>
+                    <th>Crew</th> */}
+                    <th>Airline</th>
+                    <th>Status</th>
+                 {/*    <th>Price</th> */}
+                    <th>Duration</th>
+                </tr>
+            </thead>
+            <tbody>
+                {filteredFlights.map(flight => (
+                    <tr key={flight._id} className='flight-row' onClick={() => navigate(`/flights/${flight._id}`)}>
+                        <td>{flight.flightNumber}</td>
+                        <td>{flight.departureAirport}</td>
+                        <td>{flight.arrivalAirport}</td>
+                        <td>{formatDate(flight.departureTime)}</td>
+                        <td>{formatDate(flight.arrivalTime)}</td>
+                      {/*   <td>{flight.aircraft}</td>
+                        <td>{flight.crew}</td> */}
+                        <td>{flight.airline}</td>
+                        <td className={getStatusClassName(flight.status)}>{flight.status}</td>
+                        <td>{flight.duration}</td>
+                    </tr>
+                ))}
+            </tbody>
+        </table>
+      </div>
+      
     );
 };
 

@@ -22,13 +22,17 @@ const AddFlightPage = () => {
     }
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios
-        .post(`${API_URL}/api/flight`, flight)
-        .then((response)=>{
-            console.log(response);
-            navigate(`/flights/${response.data._id}`); /* Bernardo: _id */
-        })
+        console.log("Submitting flight:", flight); // Debug: log the flight data
+    
+        axios.post(`${API_URL}/api/flights`, flight)
+            .then((response) => {
+                console.log(response);
+                navigate(`/flights`);
+            }).catch((error) => {
+                console.error("Error posting flight:", error.response); // log error response
+            });
     }
+    
     return (
     <div className='main-add-container'>
     <div className='add-flight-container'>
@@ -37,7 +41,7 @@ const AddFlightPage = () => {
             {/* flightNumber */}
             <div className='form-group'>
                 <p>Flight Number</p>
-                <input type='text' name='flightNumber' value={flight.flightNumber} onChange={handleChange} placeholder='Flight' className='form-control'/>
+                <input type='text' name='flightNumber' value={flight.flightNumber} onChange={handleChange} placeholder='DM____' className='form-control'/>
             </div>
             {/* departureAirport  */}
             <div className="form-group">
@@ -49,15 +53,25 @@ const AddFlightPage = () => {
                 <p>Arrival Airport</p>
                 <input type="text" name="arrivalAirport" value={flight.arrivalAirport} onChange={handleChange} placeholder="Arrival  Airport" className="form-control" />
             </div>
-            {/* departureTime */}
             <div className="form-group">
                 <p>Departure Time</p>
-                <input type="text" name="departureTime" value={flight.departureTime} onChange={handleChange} placeholder="Departure Time" className="form-control" />
+                <input 
+                    type="datetime-local" 
+                    name="departureTime" 
+                    value={flight.departureTime} 
+                    onChange={handleChange} 
+                    className="form-control" 
+                />
             </div>
-            {/* arrivalTime */}
             <div className="form-group">
                 <p>Arrival Time</p>
-                <input type="text" name="arrivalTime" value={flight.arrivalTime} onChange={handleChange} placeholder="Arrival Time" className="form-control" />
+                <input 
+                    type="datetime-local" 
+                    name="arrivalTime" 
+                    value={flight.arrivalTime} 
+                    onChange={handleChange} 
+                    className="form-control" 
+                />
             </div>
             {/* aircraft */}
             {/* <div className="form-group">

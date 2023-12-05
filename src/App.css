@@ -723,3 +723,63 @@ body, html {
     margin-top: 10px;
   }
 }
+
+
+/* -------FLIGHT LIST PAGE */
+/* Flight List Container Styles */
+.flight-list-container {
+  max-width: 2000px;
+  margin: auto;
+  padding: 20px;
+  background-color: #f4f4f8;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.flight-list-container h1 {
+  color: #005288;
+  text-align: center;
+  margin-bottom: 20px;
+  background-color: rgb(209, 209, 209);
+  padding: 20px 0px;
+  border-radius: 8px;
+}
+
+/* Flight Table Styles */
+.flight-table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.flight-table th,
+.flight-table td {
+  padding: 12px 15px;
+  text-align: left;
+  background-color: #ffffff;
+  border-bottom: 1px solid #ddd;
+}
+
+.flight-table th {
+  background-color: #005288;
+  color: white;
+}
+
+.flight-table tbody tr:hover {
+  color: #005288;
+}
+
+/* Add-Flight Link Styles */
+.add-flight-link {
+
+  display: inline-block;
+  background-color: #2883a7;
+  color: white;
+  padding: 10px 15px;
+  margin-bottom: 20px;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: bold;
+  text-align: center;
+}

@@ -32,7 +32,7 @@ const CrewDetailsPage = () => {
         };
         setCrewMember(formattedData);
       })
-      .catch(error => {
+      .catch(() => {
         setError('Failed to fetch crew member details');
       });
   }, [crewId]);
@@ -78,9 +78,9 @@ const CrewDetailsPage = () => {
         newRatings.push(e.target.value);
       } else {
         const index = newRatings.indexOf(e.target.value);
-        if (index > -1) {
+        
           newRatings.splice(index, 1);
-        }
+        
       }
       setCrewMember({ ...crewMember, typerating: newRatings });
     } else {
