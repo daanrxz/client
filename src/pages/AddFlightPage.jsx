@@ -20,7 +20,7 @@ const AddFlightPage = () => {
     });
     const [crewMembers, setCrewMembers] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
-    const [selectedCrew, setSelectedCrew] = useState(''); // New state to track the selected crew member
+    const [isDropdownVisible, setIsDropdownVisible] = useState(false);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -37,24 +37,24 @@ const AddFlightPage = () => {
         setFlight({...flight, [e.target.name]: e.target.value});
     };
 
-    const handleCrewChange = (e) => {
-        setSelectedCrew(e.target.value);
-    };
-
     const handleSearchChange = (e) => {
         setSearchTerm(e.target.value);
+        setIsDropdownVisible(e.target.value.length > 0);
     };
 
-    const handleAddCrew = () => {
-        // Add the selected crew member to the flight's crew list
-        if (selectedCrew && !flight.crew.includes(selectedCrew)) {
-            setFlight({...flight, crew: [...flight.crew, selectedCrew]});
+    const handleAddCrew = (crewId) => {
+        if (!flight.crew.includes(crewId)) {
+            setFlight({...flight, crew: [...flight.crew, crewId]});
+            setSearchTerm('');
+            setIsDropdownVisible(false);
         }
     };
+    const handleRemoveCrew = (crewId) => {
+        setFlight({...flight, crew: flight.crew.filter(id => id !== crewId)});
+    };
 
-      // Get added crew member details for display
-      const addedCrewMembers = crewMembers.filter(crewMember => 
-        flight.crew.includes(crewMember._id)
+    const filteredCrewMembers = crewMembers.filter(
+        crewMember => crewMember.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
     const handleSubmit = (e) => {
@@ -68,10 +68,6 @@ const AddFlightPage = () => {
                 console.error("Error posting flight:", error);
             });
     };
-
-    const filteredCrewMembers = crewMembers.filter(
-        crewMember => crewMember.name.toLowerCase().includes(searchTerm.toLowerCase())
-    );
 
     return (
         <div className='main-add-container'>
@@ -136,41 +132,47 @@ const AddFlightPage = () => {
                         />
                     </div>
 
-                    <div className="form-group">
+                   {/* Crew Search and Dropdown */}
+                   <div className="form-group">
                         <p>Crew</p>
                         <input 
                             type="text" 
                             placeholder="Search crew..." 
                             value={searchTerm} 
-                            onChange={(e) => setSearchTerm(e.target.value)} 
+                            onChange={handleSearchChange} 
                             className="form-control"
                         />
-                        <select 
-                            value={selectedCrew} 
-                            onChange={handleCrewChange} 
-                            className="form-control"
-                        >
-                            <option value="">Select Crew</option>
-                            {filteredCrewMembers.map(crewMember => (
-                                <option key={crewMember._id} value={crewMember._id}>
-                                    {crewMember.name}
-                                </option>
-                            ))}
-                        </select>
-                        <button type="button" onClick={handleAddCrew} className="btn btn-primary">
-                            Add Crew Member
-                        </button>
+                        {isDropdownVisible && (
+                            <div className="dropdown-menu">
+                                {filteredCrewMembers.map(member => (
+                                    <div 
+                                        key={member._id} 
+                                        className="dropdown-item" 
+                                        onClick={() => handleAddCrew(member._id)}
+                                    >
+                                        {member.name}
+                                    </div>
+                                ))}
+                            </div>
+                        )}
                     </div>
 
-                    {/* Display added crew members */}
+                    {/* Display and Manage Added Crew Members */}
                     <div className="form-group">
                         <p>Added Crew Members:</p>
                         <ul>
-                            {addedCrewMembers.map(crewMember => (
-                                <li key={crewMember._id}>{crewMember.name}</li>
-                            ))}
+                            {flight.crew.map(crewId => {
+                                const crewMember = crewMembers.find(member => member._id === crewId);
+                                return crewMember ? (
+                                    <li key={crewId}>
+                                        {crewMember.name}
+                                        <button onClick={() => handleRemoveCrew(crewId)}>Remove</button>
+                                    </li>
+                                ) : null;
+                            })}
                         </ul>
                     </div>
+
 
                     <div className="form-group">
                         <p>Airline</p>
