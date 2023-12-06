@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
-
+import "./FlightDetailsPage.css"
 const API_URL = "http://localhost:5005";
 
 const FlightDetailsPage = () => {
@@ -97,7 +97,7 @@ const FlightDetailsPage = () => {
 
     return(
         <div className='flight-details-container'>
-            <h1>Flight Details</h1>
+            <h1><span>/ </span>{flight.flightNumber}</h1>
             {editMode ? (
                 <div className="flight-detail">
                         <p>Flight Number</p>
@@ -171,19 +171,51 @@ const FlightDetailsPage = () => {
                     <button onClick={toggleEditMode}>Cancel</button>
             </div>
             ) : (
-                <div className="flight-detail-display">
-                    <p><strong>Flight Number:</strong> {flight.flightNumber}</p>
-                    <p><strong>Departure Airport:</strong> {flight.departureAirport}</p>
-                    <p><strong>Arrival Airport:</strong> {flight.arrivalAirport}</p>
-                    <p><strong>Departure:</strong> {flight.departureTime}</p>
-                    <p><strong>Arrival:</strong> {flight.arrivalTime}</p>
-                    <p><strong>Aircraft:</strong> {flight.aircraft}</p>
-                    <p><strong>Status:</strong> {flight.status}</p>
-                    <p><strong>Crew:</strong> {getCrewNames(flight.crew)}</p>
-                    <p><strong>Duration:</strong> {flight.duration}</p>
-                    <button onClick={toggleEditMode}>Edit Flight Details</button>
-                    <button onClick={handleDelete}>Delete Flight</button>
-            </div>
+                <div className='flight-detail-main'>
+                    <div className='flight-container'>
+                        <div className='container1'>
+                            <div className='box'>
+                                <div className='box-header'>
+                                    <p>Departure</p>
+                                    
+                                </div>
+
+                                <div className='box-content'>
+                                    <p className='status'>{flight.status}</p>
+                                    <p className='airport'>{flight.departureAirport}</p>
+                                    <p>{flight.departureTime}</p>
+                                    <img src="/public/departure.png" width="50px"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div className='container2'>
+                        <div className='box'>
+                            <div className='box-header'>
+                            <p>Arrival</p>
+                            <p>{flight.arrivalTime}</p>
+                            </div>
+                            <div className='box-content'>
+                            <p className='airport'>{flight.arrivalAirport}</p>
+                            <img src="/public/arrival.png" width="50px"/>
+                                </div>
+                        </div>
+                        </div>
+                    </div>
+                {/* <div className="flight-detail-display">
+                        <p><strong>Flight Number:</strong> {flight.flightNumber}</p>
+                        <p><strong>Departure Airport:</strong> {flight.departureAirport}</p>
+                        <p><strong>Arrival Airport:</strong> {flight.arrivalAirport}</p>
+                        <p><strong>Departure:</strong> {flight.departureTime}</p>
+                        <p><strong>Arrival:</strong> {flight.arrivalTime}</p>
+                        <p><strong>Aircraft:</strong> {flight.aircraft}</p>
+                        <p><strong>Status:</strong> {flight.status}</p>
+                        <p><strong>Crew:</strong> {getCrewNames(flight.crew)}</p>
+                        <p><strong>Duration:</strong> {flight.duration}</p>
+                        <button onClick={toggleEditMode}>Edit Flight Details</button>
+                        <button onClick={handleDelete}>Delete Flight</button>
+                    </div> */}
+                </div>
+                
                 )}
         </div>
         
