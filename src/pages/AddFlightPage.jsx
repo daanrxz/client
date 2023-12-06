@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import "../pages/AddFlightPage.css"
 
 
-const API_URL = "http://localhost:5005";
+const API_URL = "https://dm-airlines.adaptable.app";
 
 const AddFlightPage = () => {
     const [flight, setFlight] = useState({

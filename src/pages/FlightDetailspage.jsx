@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import "./FlightDetailsPage.css"
-const API_URL = "http://localhost:5005";
+const API_URL = "https://dm-airlines.adaptable.app";
 
 const FlightDetailsPage = () => {
     const [flight, setFlight] = useState({
@@ -97,13 +97,15 @@ const FlightDetailsPage = () => {
 
     return(
         <div className='flight-details-container'>
-            <h1><span>/ </span>{flight.flightNumber}</h1>
+            <div className='title-details'>
+            <h1><span>/ </span>{flight.flightNumber} - {flight.status}</h1>
+            </div>
             {editMode ? (
                 <div className="flight-detail">
                         <p>Flight Number</p>
                         <input type='text' name='flightNumber' value={flight.flightNumber} onChange={handleChange}/>
                         <p>Departure Airport</p>
-                        <input type='name' name='departureAirport' value={flight.departureAirport} onChange={handleChange}/>
+                        <input type='text' name='departureAirport' value={flight.departureAirport} onChange={handleChange}/>
                         <p>Arrival Airport</p>
                         <input type='text' name='arrivalAirport' value={flight.arrivalAirport} onChange={handleChange}/>
                         <p>Departure</p>
@@ -130,12 +132,12 @@ const FlightDetailsPage = () => {
                         <option value="Completed">Completed</option>
                         </select>
                         <p>Crew</p>
+                        <div className='search-container'>
                         <input
                             type="text"
                             placeholder="Search crew..."
                             value={searchTerm}
                             onChange={handleSearchChange}
-
                         />
                         {isDropdownVisible && (
                             <div className="dropdown-menu">
@@ -146,10 +148,11 @@ const FlightDetailsPage = () => {
                                         onClick={() => handleAddCrewMember(member._id)}
                                     >
                                         {member.name}
-                                    </div>
+                                    </div> 
                                 ))}
                             </div>
                         )}
+                        </div>
                 
 
                     {/* Display and Manage Current Crew */}
@@ -177,11 +180,9 @@ const FlightDetailsPage = () => {
                             <div className='box'>
                                 <div className='box-header'>
                                     <p>Departure</p>
-                                    
                                 </div>
 
                                 <div className='box-content'>
-                                    <p className='status'>{flight.status}</p>
                                     <p className='airport'>{flight.departureAirport}</p>
                                     <p>{flight.departureTime}</p>
                                     <img src="/public/departure.png" width="50px"/>
@@ -192,16 +193,18 @@ const FlightDetailsPage = () => {
                         <div className='box'>
                             <div className='box-header'>
                             <p>Arrival</p>
-                            <p>{flight.arrivalTime}</p>
+                            
                             </div>
                             <div className='box-content'>
                             <p className='airport'>{flight.arrivalAirport}</p>
+                            <p>{flight.arrivalTime}</p>
                             <img src="/public/arrival.png" width="50px"/>
                                 </div>
                         </div>
                         </div>
                     </div>
-                {/* <div className="flight-detail-display">
+                <div className="flight-detail-display">
+                        <h2>DETAILS</h2>
                         <p><strong>Flight Number:</strong> {flight.flightNumber}</p>
                         <p><strong>Departure Airport:</strong> {flight.departureAirport}</p>
                         <p><strong>Arrival Airport:</strong> {flight.arrivalAirport}</p>
@@ -213,7 +216,7 @@ const FlightDetailsPage = () => {
                         <p><strong>Duration:</strong> {flight.duration}</p>
                         <button onClick={toggleEditMode}>Edit Flight Details</button>
                         <button onClick={handleDelete}>Delete Flight</button>
-                    </div> */}
+                    </div>
                 </div>
                 
                 )}

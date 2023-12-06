@@ -3,7 +3,7 @@ import { AuthContext } from '../Context/auth.context';
 import axios from 'axios';
 import "../pages/Profile.css";
 
-const API_URL = "http://localhost:5005";
+const API_URL = "https://dm-airlines.adaptable.app";
 
 function ProfilePage() {
     const [name, setName] = useState("");

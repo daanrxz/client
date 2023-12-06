@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import "../pages/AddcrewPage.css";
 
-const API_URL = "http://localhost:5005";
+const API_URL = "https://dm-airlines.adaptable.app";
 
 const AddCrewPage = () => {
   const [crewMember, setCrewMember] = useState({

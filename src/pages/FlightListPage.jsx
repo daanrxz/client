@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-const API_URL = "http://localhost:5005";
+const API_URL = "https://dm-airlines.adaptable.app";
 
 const FlightListPage = () => {
     const [flights, setFlights] = useState([]);
