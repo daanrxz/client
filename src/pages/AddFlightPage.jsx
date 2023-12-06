@@ -74,7 +74,7 @@ const AddFlightPage = () => {
     return (
         <div className='main-add-container'>
             <div className='add-flight-container'>
-                <h1 className='add-flight-title'>Add Flight Form</h1>
+                <h1 className='add-flight-title'>Add Flight</h1>
                 <form onSubmit={handleSubmit} className='add-flight-form'>
                     <div className='form-group'>
                         <p>Flight Number</p>
@@ -113,7 +113,7 @@ const AddFlightPage = () => {
                     </div>
 
                     <div className="form-group">
-                        <p>Departure Time</p>
+                        <p>Departure</p>
                         <input 
                             type="datetime-local" 
                             name="departureTime" 
@@ -124,7 +124,7 @@ const AddFlightPage = () => {
                     </div>
 
                     <div className="form-group">
-                        <p>Arrival Time</p>
+                        <p>Arrival</p>
                         <input 
                             type="datetime-local" 
                             name="arrivalTime" 
@@ -162,31 +162,23 @@ const AddFlightPage = () => {
                     {/* Display and Manage Added Crew Members */}
                     <div className="form-group">
                         <p>Added Crew Members:</p>
-                        <ul>
+                        <ul className="crew-member-list">
                             {flight.crew.map(crewId => {
                                 const crewMember = crewMembers.find(member => member._id === crewId);
                                 return crewMember ? (
-                                    <li key={crewId}>
-                                        {crewMember.name}
-                                        <button onClick={() => handleRemoveCrew(crewId)}>Remove</button>
+                                    <li key={crewId} className="crew-member-item">
+                                        <span>
+                                            <span className="crew-member-name">{crewMember.name}</span>
+                                            <span className="crew-member-role">({crewMember.role})</span>
+                                        </span>
+                                        <button onClick={() => handleRemoveCrew(crewId)} className="delete-button">Remove</button>
                                     </li>
+
                                 ) : null;
                             })}
                         </ul>
                     </div>
 
-
-                    <div className="form-group">
-                        <p>Airline</p>
-                        <input 
-                            type="text" 
-                            name="airline" 
-                            value={flight.airline} 
-                            onChange={handleChange} 
-                            placeholder="Airline" 
-                            className="form-control" 
-                        />
-                    </div>
 
                     <div className="form-group">
                         <p>Status</p>
@@ -204,15 +196,18 @@ const AddFlightPage = () => {
                     </div>
 
                     <div className="form-group">
-                        <p>Price</p>
-                        <input 
-                            type="text" 
-                            name="price" 
-                            value={flight.price} 
+                        <p>Aircraft</p>
+                        <select 
+                            name="aircraft" 
+                            value={flight.aircraft} 
                             onChange={handleChange} 
-                            placeholder="Price" 
-                            className="form-control" 
-                        />
+                            className="form-control"
+                        >
+                            <option >N-2567GA</option>
+                            <option >N-762CK</option>
+                            <option >N-348AB</option>
+
+                        </select>
                     </div>
 
                     <div className="form-group">

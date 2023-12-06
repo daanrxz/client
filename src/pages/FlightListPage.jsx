@@ -19,11 +19,11 @@ const FlightListPage = () => {
             });
     }, []);
 
-    const formatDate = (dateString) => {
+    /* const formatDate = (dateString) => {
         if (!dateString) return 'N/A';
         const date = new Date(dateString);
         return !isNaN(date.getTime()) ? date.toLocaleDateString() : 'Invalid Date';
-    };
+    }; */
 
     const getStatusClassName = (status) => {
         switch (status) {
@@ -67,8 +67,8 @@ const FlightListPage = () => {
                     <th>Flight Number</th>
                     <th>Departure Airport</th>
                     <th>Arrival Airport</th>
-                    <th>Departure Time</th>
-                    <th>Arrival Time</th>
+                    <th>Departure</th>
+                    <th>Arrival</th>
                     <th>Aircraft</th>
                     <th>Status</th>
                     <th>Duration</th>
@@ -80,8 +80,8 @@ const FlightListPage = () => {
                         <td>{flight.flightNumber}</td>
                         <td>{flight.departureAirport}</td>
                         <td>{flight.arrivalAirport}</td>
-                        <td>{formatDate(flight.departureTime)}</td>
-                        <td>{formatDate(flight.arrivalTime)}</td>
+                        <td>{flight.departureTime}</td>
+                        <td>{flight.arrivalTime}</td>
                         <td>{flight.aircraft}</td>
                         <td className={getStatusClassName(flight.status)}>{flight.status}</td>
                         <td>{flight.duration}</td>

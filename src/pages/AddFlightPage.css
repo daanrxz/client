@@ -1,3 +1,130 @@
 .main-add-container {
-    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #F4F4F8; /* Light background color */
+    padding: 20px;
+}
+
+.add-flight-container {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0px 0px 30px 0px #5a5a5a82;
+    width: 100%;
+    max-width: 600px; /* Adjust as needed */
+    padding: 20px;
+    margin: 20px;
+}
+
+.add-flight-title {
+    text-align: center;
+    color: #005188; /* Dark text color for contrast */
+}
+
+.add-flight-form {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Spacing between form fields */
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-control {
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    padding: 10px;
+    font-size: 16px;
+}
+
+.button {
+    background-color: #005188; /* Primary button color */
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: #003d82; /* Darken button on hover */
+}
+
+.dropdown-menu {
+    position: absolute;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+    z-index: 1000;
+    width: calc(100% - 40px); /* Adjust to align with input field */
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.dropdown-item {
+    padding: 10px;
+    border-bottom: 1px solid #eeeeee;
+    cursor: pointer;
+}
+
+.dropdown-item:last-child {
+    border-bottom: none;
+}
+
+.dropdown-item:hover {
+    background-color: #f0f0f0;
+}
+.delete-button {
+    background-color: #ff4d4f; /* Red color for delete action */
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    margin-left: 10px; /* Space between the crew name and the button */
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.delete-button:hover {
+    background-color: #ff7875; /* Slightly lighter red on hover */
+}
+
+/* Styles for the crew member list */
+.crew-member-list {
+    list-style: none;
+    padding: 0;
+}
+
+.crew-member-item {
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.crew-member-name {
+    font-weight: bold;
+}
+
+.crew-member-role {
+    font-style: italic;
+    margin-left: 5px;
+    color: #555; /* Dark gray for a subtle look */
+}
+
+
+@media (max-width: 768px) {
+    .add-flight-container {
+        width: 90%;
+        margin: 10px;
+    }
+
+    .form-control {
+        font-size: 14px;
+    }
 }
