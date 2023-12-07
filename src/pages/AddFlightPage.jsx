@@ -169,7 +169,7 @@ const AddFlightPage = () => {
                                         className="dropdown-item" 
                                         onClick={() => handleAddCrew(member._id)}
                                     >
-                                        {member.name}
+                                        {member.name} - {member.role}
                                     </div>
                                 ))}
                             </div>
