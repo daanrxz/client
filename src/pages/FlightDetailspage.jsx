@@ -257,7 +257,7 @@ const FlightDetailsPage = () => {
                                 <div className='box-content'>
                                     <p className='airport'>{getAirportNameByCode(flight.departureAirport)}</p>
                                     <p>{formatDateDisplay(flight.departureTime)} - Local Time</p>
-                                    <img src="/public/departure.png" width="50px"/>
+                                    <img src="/departure.png" width="50px"/>
                                 </div>
                             </div>
                         </div>
@@ -269,7 +269,7 @@ const FlightDetailsPage = () => {
                                 <div className='box-content'>
                                     <p className='airport'>{getAirportNameByCode(flight.arrivalAirport)}</p>
                                     <p>{formatDateDisplay(flight.departureTime)} - Local Time</p>
-                                    <img src="/public/arrival.png" width="50px"/>
+                                    <img src="/arrival.png" width="50px"/>
                                 </div>
                             </div>
                         </div>
