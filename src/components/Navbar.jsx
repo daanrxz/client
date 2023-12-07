@@ -3,6 +3,7 @@ import { AuthContext } from "../Context/auth.context";
 import { useContext } from "react";
 import "../components/Navbar.css"
 function Navbar() {
+
   const { isLoggedIn, user, logOut } = useContext(AuthContext);
   const navigate = useNavigate();
   const logOutUser = () => {
@@ -15,10 +16,9 @@ function Navbar() {
   }
   
   return (
-    
     <nav className="navbar">
       <div className="nav-logo">
-        <img src="logo-black.png" alt="Logo" className="logo-img" />
+        <img src="black-logo.png" alt="Logo" className="logo-img" />
       </div>
 
       <div className="nav-buttons">
@@ -27,6 +27,7 @@ function Navbar() {
         </Link>
 
         {/* New Button to Crew Members Page */}
+        
         <Link to="/crews" className="nav-link">
           <button className="bn13">Crew</button>
         </Link>
@@ -34,15 +35,16 @@ function Navbar() {
           <button className="bn13">Flights</button>
         </Link>
 
+      {/* LOGGED IN */}
+
         {isLoggedIn && (
           <>
-           {/*  <Link to="/profile" className="nav-link">
-              <button className="bn13">Profile</button>
-            </Link> */}
             <button onClick={logOutUser} className="bn13">Logout</button>
             <span className="nav-user-name"><b><span className="user-blue">User:</span> </b>{user && user.name}</span>
           </>
         )}
+
+      {/* NOT LOGGED IN */}
 
         {!isLoggedIn && (
           <>

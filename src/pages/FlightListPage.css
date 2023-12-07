@@ -1,0 +1,135 @@
+/* -------FLIGHT LIST PAGE */
+/* Flight List Container Styles */
+.flight-list-container {
+    max-width: 2000px;
+    margin: auto;
+    padding: 20px;
+    background-color: #f4f4f8;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    height: 100vh;
+  }
+  
+  .flight-list-container h1 {
+    color: #005288;
+  text-align: center;
+    margin-bottom: 20px;
+  
+    padding: 20px 0px;
+    border-radius: 8px;
+  }
+  
+  /* Flight Table Styles */
+  .flight-table {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .flight-table td {
+    height: 80px;
+  }
+  .flight-table th,
+  .flight-table td {
+    padding: 12px 15px;
+    text-align: left;
+    background-color: #ffffff;
+    border-bottom: 1px solid #ddd;
+    cursor: pointer;
+  }
+  
+  .flight-table th {
+    background-color: #005288;
+    color: white;
+  }
+  
+  .flight-table tbody tr:hover {
+    color: #005288;
+  }
+  
+  /* Add-Flight Link Styles */
+  
+  .status-scheduled {
+    color: rgb(0, 140, 255);
+  }
+  
+  .status-delayed {
+    color: orange; 
+  }
+  
+  .status-cancelled {
+    color: red; 
+  }
+  
+  .status-completed {
+    color: green;
+  }
+
+  /* Responsive design for tables on smaller screens */
+@media (max-width: 768px) {
+    .flight-table,
+    .flight-table thead,
+    .flight-table tbody,
+    .flight-table th,
+    .flight-table td,
+    .flight-table tr {
+      display: block;
+    }
+  
+    .flight-table thead tr {
+      position: absolute;
+      top: -9999px;
+      left: -9999px;
+    }
+  
+    .flight-table tr {
+      margin-bottom: 10px;
+    }
+  
+    .flight-table td {
+      /* Making table cell display like a row of data */
+      position: relative;
+      padding-left: 50%;
+      height: auto;
+      text-align: right;
+    }
+  
+    .flight-table td:before {
+      /* Adding column headers as labels before each cell */
+      position: absolute;
+      left: 10px;
+      width: 45%;
+      padding-right: 10px;
+      white-space: nowrap;
+      text-align: left;
+      font-weight: bold;
+      /* Style to match your design */
+      color: #005288;
+    }
+  
+    /* Label the data */
+    .flight-table td:nth-of-type(1):before { content: "Flight Number"; }
+    .flight-table td:nth-of-type(2):before { content: "Departure Airport"; }
+    .flight-table td:nth-of-type(3):before { content: "Arrival Airport"; }
+    .flight-table td:nth-of-type(4):before { content: "Departure (LocalTime)"; }
+    .flight-table td:nth-of-type(5):before { content: "Arrival (LocalTime)"; }
+    .flight-table td:nth-of-type(6):before { content: "Aircraft"; }
+    .flight-table td:nth-of-type(7):before { content: "Status"; }
+    .flight-table td:nth-of-type(8):before { content: "Duration (Minutes)"; }
+  }
+  
+  /* Adjustments for smaller devices */
+  @media (max-width: 480px) {
+    .flight-list-container h1 {
+      font-size: 1.5em;
+    }
+  
+    .flight-table td {
+      padding-left: 30%;
+    }
+  
+    .flight-table td:before {
+      left: 6px;
+      width: 40%;
+    }
+  }

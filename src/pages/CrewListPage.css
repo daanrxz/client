@@ -1,0 +1,176 @@
+
+/* crewListPage.css */
+
+/* Status Classes */
+.status-active { color: green; }
+.status-retired { color: red; }
+.status-on-leave { color: rgb(255, 179, 0); }
+
+/* Crew List Container Styles */
+.crew-list-container {
+  max-width: 2000px;
+  margin: auto;
+  padding: 20px;
+  background-color: #f4f4f8;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.crew-list-container h1 {
+  color: #005288;
+  margin-bottom: 20px;
+  padding: 20px 0px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.button-container{
+  display: flex;
+  justify-content: space-between;
+}
+/* Link Styles */
+.add-crew-link {
+  display: inline-block;
+  background-color: #005288;
+  color: white;
+  padding: 10px 15px;
+  margin-bottom: 20px;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* Table Styles */
+.crew-table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.crew-table th,
+.crew-table td {
+  padding: 20px 15px;
+  text-align: left;
+  background-color: #ffffff;
+  border-bottom: 1px solid #ddd;
+  cursor: pointer;
+}
+
+.crew-table td {
+  height: 80px;
+}
+.crew-table th {
+  background-color: #005288;
+  color: white;
+}
+
+.crew-table tbody tr:hover {
+  color: #005288;
+}
+
+/* Search Bar Styles */
+.search-bar {
+  display: block;
+  width: 100%;
+  padding: 10px 15px;
+  margin-bottom: 20px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+}
+
+.search-bar:focus {
+  outline: none;
+  border-color: #005288;
+  box-shadow: 0 0 0 2px rgba(0, 82, 136, 0.2);
+}
+
+/* Button Container Styles */
+
+
+.add-crew-link {
+
+  border-radius: 4px;
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  background-color: #005288;
+}
+
+.add-crew-link:hover {
+
+  box-shadow: 0px 0px 20px 0px rgba(128, 128, 128, 0.362);
+}
+
+/* Responsive Table Styles */
+@media screen and (max-width: 768px) {
+  .crew-table, .crew-table thead, .crew-table tbody, .crew-table th, .crew-table td, .crew-table tr {
+    display: block;
+  }
+
+  .crew-table th {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+
+  .crew-table tr {
+    margin-bottom: 10px;
+  }
+
+  .crew-table td {
+    border: none;
+    position: relative;
+    padding-left: 50%;
+    text-align: right;
+  }
+
+  .crew-table td:before {
+    position: absolute;
+    top: 12px;
+    left: 15px;
+    width: 45%;
+    padding-right: 10px;
+    white-space: nowrap;
+    text-align: left;
+    font-weight: bold;
+  }
+
+  .crew-table td:before { content: attr(data-label); }
+}
+
+/* Smaller Devices */
+@media screen and (max-width: 480px) {
+  .crew-list-container, .button-container {
+    padding: 10px;
+  }
+
+  .add-crew-link, .back-button {
+    padding: 8px 10px;
+    font-size: 0.8em;
+  }
+
+  .search-bar {
+    padding: 8px 10px;
+    margin-bottom: 15px;
+  }
+
+  .crew-list-container h1 {
+    padding: 15px 0px;
+  }
+}
+
+/* Very Small Devices */
+@media screen and (max-width: 320px) {
+  .crew-list-container {
+    padding: 5px;
+  }
+
+  .crew-list-container h1, .add-crew-link, .back-button, .search-bar {
+    font-size: 0.7em;
+  }
+}

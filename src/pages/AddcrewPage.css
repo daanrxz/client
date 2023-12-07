@@ -7,7 +7,7 @@
     margin: 0;
     padding: 0;
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    background-color: #EFF6FF; /* Light neutral background */
+    background-color: #EFF6FF; 
   }
   
   /* Main Container Styles */
@@ -15,21 +15,28 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh; /* Full height of the viewport */
+    min-height: 100vh;
     padding: 20px;
     background-color: #EFF6FF;
+    flex-direction: column;
   }
   
   /* Add Crew Container Styles */
   .add-crew-container {
+    margin-top: 50px;
     width: 100%;
-    max-width: 800px; /* Maximum width of the container */
-    background-color: #FFFFFF; /* White background for the form */
+    max-width: 800px; 
+    background-color: #FFFFFF; 
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0px 0px 30px 0px #5a5a5a82;
     display: flex;
     flex-direction: column;
+  }
+
+  .main-add-container > button {
+    
+    margin-right:  1000px;
   }
   
   .add-crew-title {
@@ -59,7 +66,7 @@
   /* Button Styles */
   .add-crew-button {
     padding: 20px 40px;
-    background-color: #005188; /* Vibrant blue background for the button */
+    background-color: #005188;
     color: #FFFFFF;
     border: none;
     border-radius: 4px;
@@ -71,13 +78,10 @@
     justify-content: center;
     align-items: center;
     align-self: center;
-    
-
   }
   
   .add-crew-button:hover {
-    background-color: grey; /* Slightly darker blue on hover */
-  }
+    box-shadow: 0px 0px 20px 0px rgba(128, 128, 128, 0.362);  }
   
   /* Responsive Design */
   @media (max-width: 768px) {

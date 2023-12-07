@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import "../pages/AddFlightPage.css"
-
+import airports from '../assets/airports';
 
 const API_URL = "https://dm-airlines.adaptable.app";
 
@@ -55,12 +55,14 @@ const AddFlightPage = () => {
         setFlight({...flight, crew: flight.crew.filter(id => id !== crewId)});
     };
 
+    /* FILTER CREW MEMBERS TO SEARCH */
     const filteredCrewMembers = crewMembers.filter(
         crewMember => crewMember.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        console.log("Submitting flight data:", flight);  // Log the flight data
         axios.post(`${API_URL}/api/flights`, flight)
             .then(response => {
                 console.log("Flight added:", response);
@@ -71,10 +73,18 @@ const AddFlightPage = () => {
             });
     };
 
+    const goBack = () => {
+        navigate(-1); // Go back to the last page
+      };
+
     return (
         <div className='main-add-container'>
             <div className='add-flight-container'>
-                <h1 className='add-flight-title'>Add Flight</h1>
+               <div className='header-crew-container'>
+                    <button onClick={goBack} className='button-back-flight'>&larr;</button>
+                    <h1 className='add-flight-title'>Add Flight</h1>
+                </div>
+                
                 <form onSubmit={handleSubmit} className='add-flight-form'>
                     <div className='form-group'>
                         <p>Flight Number</p>
@@ -90,26 +100,34 @@ const AddFlightPage = () => {
 
                     <div className="form-group">
                         <p>Departure Airport</p>
-                        <input 
-                            type="text" 
+                        <select 
                             name="departureAirport" 
                             value={flight.departureAirport} 
                             onChange={handleChange} 
-                            placeholder="Departure Airport" 
-                            className="form-control" 
-                        />
+                            className="form-control">
+                            <option value="">Select Departure Airport</option>
+                                {airports.map(airport => (
+                                    <option key={airport.id} value={airport.code}>
+                                        {airport.code} - {airport.name}
+                                    </option>
+                                ))}
+                        </select>
                     </div>
 
                     <div className="form-group">
                         <p>Arrival Airport</p>
-                        <input 
-                            type="text" 
+                        <select 
                             name="arrivalAirport" 
                             value={flight.arrivalAirport} 
                             onChange={handleChange} 
-                            placeholder="Arrival Airport" 
-                            className="form-control" 
-                        />
+                            className="form-control">
+                            <option value="">Select Arrival Airport</option>
+                                {airports.map(airport => (
+                                    <option key={airport.id} value={airport.code}>
+                                    {airport.code} - {airport.name}
+                                    </option>
+                                ))}
+                        </select>
                     </div>
 
                     <div className="form-group">
@@ -119,8 +137,7 @@ const AddFlightPage = () => {
                             name="departureTime" 
                             value={flight.departureTime} 
                             onChange={handleChange} 
-                            className="form-control" 
-                        />
+                            className="form-control"/>
                     </div>
 
                     <div className="form-group">
@@ -130,8 +147,7 @@ const AddFlightPage = () => {
                             name="arrivalTime" 
                             value={flight.arrivalTime} 
                             onChange={handleChange} 
-                            className="form-control" 
-                        />
+                            className="form-control"/>
                     </div>
 
                    {/* Crew Search and Dropdown */}
@@ -144,6 +160,7 @@ const AddFlightPage = () => {
                             onChange={handleSearchChange} 
                             className="form-control"
                         />
+
                         {isDropdownVisible && (
                             <div className="dropdown-menu">
                                 {filteredCrewMembers.map(member => (
@@ -160,6 +177,7 @@ const AddFlightPage = () => {
                     </div>
 
                     {/* Display and Manage Added Crew Members */}
+
                     <div className="form-group">
                         <p>Added Crew Members:</p>
                         <ul className="crew-member-list">
@@ -203,9 +221,9 @@ const AddFlightPage = () => {
                             onChange={handleChange} 
                             className="form-control"
                         >
-                            <option >N-2567GA</option>
-                            <option >N-762CK</option>
-                            <option >N-348AB</option>
+                            <option>N-2567GA</option>
+                            <option>N-762CK</option>
+                            <option>N-348AB</option>
 
                         </select>
                     </div>

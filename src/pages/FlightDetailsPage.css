@@ -5,8 +5,29 @@
 
 
 }
+.button-back-flight {
+    height: 35px;
+    font-size: 19px;
+    display: flex;
+    border-radius: 4px;
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  background-color: #005288;
+  border: 1px solid #005188;
+  align-items: center;
+}
+.button-back-flight:hover {
+    box-shadow: 0px 0px 20px 0px rgba(128, 128, 128, 0.362);
+    cursor: pointer;
+}
 .title-details {
-    padding-left: 50px;
+    padding-left: 40px;
+    display: flex;
+    align-items: center;
+
+
+    
 }
 .flight-detail-main {
 width: 100%;
@@ -91,6 +112,7 @@ width: 100%;
 }
 .flight-details-container span {
     color: #005188;
+    padding-left: 30px;
 }
 
 .flight-detail-display {
@@ -157,6 +179,7 @@ width: 100%;
 }
 
 .flight-detail input[type='text'],
+.flight-detail input[type='datetime-local'], 
 .flight-detail select {
     width: 100%;
     padding: 10px;
@@ -164,6 +187,13 @@ width: 100%;
     border: 1px solid #ddd;
     border-radius: 4px;
     font-size: 14px;
+}
+
+.flight-detail input[type='text']:focus,
+.flight-detail input[type='datetime-local']:focus { /* Add this line */
+    outline: none;
+    border-color: #0056b3; /* Adjust the color as needed */
+    box-shadow: 0 0 0 2px rgba(0, 86, 179, 0.2); /* Optional: add a subtle shadow */
 }
 
 .flight-detail select {
@@ -243,4 +273,92 @@ width: 100%;
 
 .flight-detail li button:hover {
     background-color: #cc0000; /* Darker shade for hover effect */
+}
+
+.crew-list {
+    margin-top: 20px;
+}
+
+.crew-list p {
+    margin-bottom: 10px;
+}
+
+.crew-list ul {
+    list-style-type: none;
+    padding-left: 0; /* Remove default padding */
+
+}
+
+.crew-list li {
+    margin-bottom: 5px;
+}
+.crew-list a {
+    padding-left: 10px;
+    color: #005288; /* Link text color */
+    text-decoration: none; /* Remove underline */
+    font-weight: bold; /* Make text bold */
+    transition: color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.crew-list a:hover {
+
+    text-decoration: underline; /* Underline on hover (optional) */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .flight-details-container {
+        padding: 10px;
+    }
+
+    .title-details {
+        padding-left: 10px;
+    }
+
+    .flight-container {
+        height: auto; /* Adjust height for smaller screens */
+    }
+
+    .container1, .container2 {
+        padding: 5%;
+    }
+
+    .box-content {
+        padding-left: 20px;
+    }
+
+    .flight-detail-display, .flight-detail {
+        width: 100%; /* Ensure full width on smaller screens */
+        max-width: none; /* Remove max-width constraint */
+        margin: 10px 0;
+        padding: 10px;
+    }
+
+    .flight-detail-display button,
+    .flight-detail button {
+        width: 100%; /* Full width buttons for better mobile interaction */
+        margin-top: 10px;
+    }
+
+    .flight-detail .dropdown-menu {
+        max-height: 150px; /* Adjust height for dropdown */
+    }
+}
+
+@media (max-width: 480px) {
+    .title-details h1 {
+        font-size: 1.2em; /* Adjust font size for smaller screens */
+    }
+
+    .flight-detail p, .flight-detail-display p {
+        font-size: 0.9em; /* Smaller font size for details */
+    }
+
+    .box-header p, .box-content p, .crew-list p {
+        font-size: 0.8em; /* Adjust text size in boxes and crew list */
+    }
+
+    .crew-list a {
+        font-size: 0.8em; /* Smaller font size for links */
+    }
 }

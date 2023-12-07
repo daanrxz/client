@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
-
+import "./CrewDetailsPage.css"
 const API_URL = "https://dm-airlines.adaptable.app";
 
 const CrewDetailsPage = () => {
@@ -20,8 +20,17 @@ const CrewDetailsPage = () => {
   const [error, setError] = useState('');
   const { crewId } = useParams();
   const navigate = useNavigate();
+  const [upcomingFlights, setUpcomingFlights] = useState([]);
+  const handleFlightClick = (flightId) => {
+    navigate(`/flights/${flightId}`);
+  };
+  const goBack = () => {
+    navigate(-1); // Go back to the last page
+  };
+
 
   useEffect(() => {
+    // Fetch crew member details
     axios.get(`${API_URL}/api/crews/${crewId}`)
       .then(response => {
         const formattedData = {
@@ -32,10 +41,14 @@ const CrewDetailsPage = () => {
         };
         setCrewMember(formattedData);
       })
-      .catch(() => {
-        setError('Failed to fetch crew member details');
-      });
+      .catch(() => setError('Failed to fetch crew member details'));
+
+    // Fetch upcoming flights
+    axios.get(`${API_URL}/api/crews/${crewId}/flights`)
+      .then(response => setUpcomingFlights(response.data))
+      .catch(error => console.error("Error fetching upcoming flights:", error));
   }, [crewId]);
+
 
   const toggleEditMode = () => {
     setIsEditMode(!isEditMode);
@@ -88,6 +101,23 @@ const CrewDetailsPage = () => {
     }
   };
 
+    /* FORMAT DATE DISPLAY */
+
+  const formatDateDisplay = (dateString) => {
+    if (!dateString) return 'N/A';
+    const date = new Date(dateString);
+    if (isNaN(date.getTime())) return 'Invalid Date';
+
+    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, '0'); // January is 0
+    const year = date.getFullYear();
+    const hours = String(date.getHours()).padStart(2, '0');
+    const minutes = String(date.getMinutes()).padStart(2, '0');
+
+    return `${day}/${month}/${year} - ${hours}:${minutes}`;
+};
+
+
   if (error) {
     return <div>Error: {error}</div>;
   }
@@ -99,6 +129,7 @@ const CrewDetailsPage = () => {
   return (
     
     <div className="crew-details-main">
+      <button onClick={goBack} className='button-back-flight'>&larr;</button>
       <div className="crew-header">
         <h1 className="crew-header-title">{crewMember.name}'s Details</h1>
         <button className="crew-header-button" onClick={toggleEditMode}>
@@ -169,18 +200,41 @@ const CrewDetailsPage = () => {
             </div>
           </div>
         ) : (
+
           <div className="crew-display">
             <div className="crew-profile-picture">
                 <img src={crewMember.profilePicture} alt={`${crewMember.name}'s Profile Image`} />
-              </div>
-            <p className="crew-display-item"><b>Full Name:</b> {crewMember.name}</p>
-            <p className="crew-display-item"><b>Birthday:</b> {crewMember.birthday}</p>
-            <p className="crew-display-item"><b>Email:</b> {crewMember.email}</p>
-            <p className="crew-display-item"><b>Phone Number:</b> {crewMember.phone}</p>
-            <p className="crew-display-item"><b>Type Rating:</b> {crewMember.typerating.join(', ')}</p>
-            <p className="crew-display-item"><b>License Expiry Date:</b> {crewMember.license}</p>
-            <p className="crew-display-item"><b>Role:</b> {crewMember.role}</p>
-            <p className="crew-display-item"><b>Status:</b> {crewMember.status}</p>
+            </div>
+                <p className="crew-display-item"><b>Full Name:</b> {crewMember.name}</p>
+                <p className="crew-display-item"><b>Birthday:</b> {crewMember.birthday}</p>
+                <p className="crew-display-item"><b>Email:</b> {crewMember.email}</p>
+                <p className="crew-display-item"><b>Phone Number:</b> {crewMember.phone}</p>
+                <p className="crew-display-item"><b>Type Rating:</b> {crewMember.typerating.join(', ')}</p>
+                <p className="crew-display-item"><b>License Expiry Date:</b> {crewMember.license}</p>
+                <p className="crew-display-item"><b>Role:</b> {crewMember.role}</p>
+                <p className="crew-display-item"><b>Status:</b> {crewMember.status}</p>
+           
+            {!isEditMode && (
+                <div className="upcoming-flights">
+                  <h3>Upcoming Flights</h3>
+                  {upcomingFlights.length > 0 ? (
+                    <ul>
+                      {upcomingFlights.map(flight => (
+                        <li 
+                          key={flight._id} 
+                          onClick={() => handleFlightClick(flight._id)}
+                          style={{ cursor: 'pointer' }}
+                        >
+                        {flight.departureAirport} - {flight.arrivalAirport} - {formatDateDisplay(flight.departureTime)} - Local Time
+                        </li>
+                      ))}
+                    </ul>
+                      ) : (
+                            <p>No upcoming flights.</p>
+                          )}
+                </div>
+            )}
+
           </div>
         )}
       </div>
