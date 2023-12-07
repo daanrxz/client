@@ -18,7 +18,7 @@ function Navbar() {
   return (
     <nav className="navbar">
       <div className="nav-logo">
-        <img src="https://ibb.co/23cCTc4" alt="Logo" className="logo-img" />
+        <img src="https://i.ibb.co/RTQsqQw/logo-black.png" alt="Logo" className="logo-img" />
       </div>
 
       <div className="nav-buttons">
